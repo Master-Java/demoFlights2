@@ -10,4 +10,6 @@ public interface UserTokenDao {
     void updateTokenByPhone(String phone, String token);
 
     void addNewUserToken(UserToken userToken);
+
+    boolean existUserTokenByPhone(String phone);
 }

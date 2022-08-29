@@ -29,7 +29,7 @@ public class UserTokenDaoJdbcImpl implements UserTokenDao {
         String sql = "" +
                 " UPDATE user_token" +
                 " SET" +
-                "  user_token = :token," +
+                "  user_token = :token" +
                 " WHERE user_phone = :phone;";
         MapSqlParameterSource param = new MapSqlParameterSource("phone", phone);
         param.addValue("token", token);
@@ -45,5 +45,15 @@ public class UserTokenDaoJdbcImpl implements UserTokenDao {
         param.addValue("phone", userToken.getUserPhone());
         param.addValue("token", userToken.getUserToken());
         jdbcTemplate.update(sql, param);
+    }
+
+    @Override
+    public boolean existUserTokenByPhone(String phone) {
+        String sql = "" +
+                "SELECT COUNT(*) > 0" +
+                " FROM user_token" +
+                " WHERE user_phone = :phone;";
+        MapSqlParameterSource param = new MapSqlParameterSource("phone", phone);
+        return jdbcTemplate.queryForObject(sql, param, Boolean.class);
     }
 }

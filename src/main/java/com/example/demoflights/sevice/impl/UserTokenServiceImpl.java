@@ -24,6 +24,10 @@ public class UserTokenServiceImpl implements UserTokenService {
 
     @Override
     public void addNewUserToken(UserToken userToken) {
-        userTokenDao.addNewUserToken(userToken);
+        if (userTokenDao.existUserTokenByPhone(userToken.getUserPhone())) {
+            userTokenDao.addNewUserToken(userToken);
+        } else {
+            userTokenDao.updateTokenByPhone(userToken.getUserPhone(), userToken.getUserToken());
+        }
     }
 }
