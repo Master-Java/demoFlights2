@@ -8,6 +8,8 @@ import com.example.demoflights.sevice.UserService;
 import com.example.demoflights.sevice.UserTokenService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,37 +55,65 @@ public class MainRestController {
 
     @PostMapping("/user")
     @ApiOperation("Создание нового пользователя")
-    public void createUser(@RequestBody User user) {
-        userService.createUser(user);
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        try {
+            userService.createUser(user);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("/user/{phone}")
     @ApiOperation("Изменение пользователя")
-    public void updateUser(@RequestBody User user, String phone) {
-        userService.updateUser(user, phone);
+    public ResponseEntity<?> updateUser(@RequestBody User user, String phone) {
+        try {
+            userService.updateUser(user, phone);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/user/by_phone/{phone}")
     @ApiOperation("Получение пользователя по номеру его телефона")
-    public User getUserByPhone(@PathVariable String phone) {
-        return userService.getUserByPhone(phone);
+    public ResponseEntity<User> getUserByPhone(@PathVariable String phone) {
+        try {
+            return new ResponseEntity<>(userService.getUserByPhone(phone), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 
     @PostMapping("/user_token")
     @ApiOperation("Создание нового токена пользователя")
-    public void createUserToken(@RequestBody UserToken userToken) {
-        userTokenService.addNewUserToken(userToken);
+    public ResponseEntity<?> createUserToken(@RequestBody UserToken userToken) {
+        try {
+            userTokenService.addNewUserToken(userToken);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/user_token/{phone}")
     @ApiOperation("Получение объект - токен пользователя по телефону")
-    public UserToken getUserTokenByPhone(@PathVariable String phone) {
-        return userTokenService.getByPhone(phone);
+    public ResponseEntity<UserToken> getUserTokenByPhone(@PathVariable String phone) {
+        try {
+            return new ResponseEntity<>(userTokenService.getByPhone(phone), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 
     @PutMapping("/user_token/{phone}/{token}")
     @ApiOperation("Изменение токена пользователя по телефону")
-    public void updateUserTokenByPhone(@PathVariable String phone, @PathVariable String token) {
-        userTokenService.updateTokenByPhone(phone, token);
+    public ResponseEntity<?> updateUserTokenByPhone(@PathVariable String phone, @PathVariable String token) {
+        try {
+            userTokenService.updateTokenByPhone(phone, token);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
