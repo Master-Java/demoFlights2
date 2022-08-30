@@ -78,6 +78,7 @@ public class FlightServiceImpl implements FlightService {
     @Override
     @Scheduled(fixedRate = 850 * 60)
     public void updateStatus() {
+        System.out.println("update");
         flightDao.updateStatusArchive();
         flightDao.updateStatusInAWay();
     }
