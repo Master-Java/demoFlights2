@@ -45,8 +45,8 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public void createFlight(Flight flight) {
-        flight.setFromPointDate(flight.getFromPointDate().toLowerCase().replaceAll("t", " ").replaceAll("z",""));
-        flight.setToPointDate(flight.getToPointDate().toLowerCase().replaceAll("t", " ").replaceAll("z",""));
+        flight.setFromPointDate(flight.getFromPointDate().toLowerCase().replaceAll("t", " ").replaceAll("z", ""));
+        flight.setToPointDate(flight.getToPointDate().toLowerCase().replaceAll("t", " ").replaceAll("z", ""));
         flight.setId(flightDao.createFlight(flight));
         createNewUsersAndNewLinkPassengersPhoneWithFlight(flight, flight.getId());
     }
@@ -60,8 +60,8 @@ public class FlightServiceImpl implements FlightService {
     private void createNewUsers(String phone, int id) {
         if (!userService.checkExistUserByPhone(phone)) {
             userService.createUser(User.builder().phone(phone).build());
-            flightDao.createNewLinkPassengersPhoneWithFlight(id, phone);
         }
+        flightDao.createNewLinkPassengersPhoneWithFlight(id, phone);
     }
 
     @Override
