@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequiredArgsConstructor
-@RequestMapping("api/rest/v1/")
+@RequestMapping("/api/rest/v1/")
 public class MainRestController {
 
     private final FlightService flightService;
