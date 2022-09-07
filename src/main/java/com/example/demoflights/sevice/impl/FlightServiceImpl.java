@@ -38,6 +38,7 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public void updateFlight(Flight flight, int id) {
+        replaceLettersInTime(flight);
         flightDao.deleteLinkPassengersPhoneWithFlight(id);
         flightDao.updateFlight(flight, id);
         createNewUsersAndNewLinkPassengersPhoneWithFlight(flight, id);
@@ -45,10 +46,14 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public void createFlight(Flight flight) {
-        flight.setFromPointDate(flight.getFromPointDate().toLowerCase().replaceAll("t", " ").replaceAll("z", ""));
-        flight.setToPointDate(flight.getToPointDate().toLowerCase().replaceAll("t", " ").replaceAll("z", ""));
+        replaceLettersInTime(flight);
         flight.setId(flightDao.createFlight(flight));
         createNewUsersAndNewLinkPassengersPhoneWithFlight(flight, flight.getId());
+    }
+
+    private void replaceLettersInTime(Flight flight) {
+        flight.setFromPointDate(flight.getFromPointDate().toLowerCase().replaceAll("t", " ").replaceAll("z", ""));
+        flight.setToPointDate(flight.getToPointDate().toLowerCase().replaceAll("t", " ").replaceAll("z", ""));
     }
 
     private void createNewUsersAndNewLinkPassengersPhoneWithFlight(Flight flight, int id) {
