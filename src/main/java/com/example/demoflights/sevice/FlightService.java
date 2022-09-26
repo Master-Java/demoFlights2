@@ -20,4 +20,5 @@ public interface FlightService {
 
     void updateStatus();
 
+    void deleteAllFightsLinks();
 }

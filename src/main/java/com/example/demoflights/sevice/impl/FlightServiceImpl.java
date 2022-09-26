@@ -86,4 +86,9 @@ public class FlightServiceImpl implements FlightService {
         flightDao.updateStatusArchive();
         flightDao.updateStatusInAWay();
     }
+
+    @Override
+    public void deleteAllFightsLinks() {
+        flightDao.deleteAllFightsLinks();
+    }
 }

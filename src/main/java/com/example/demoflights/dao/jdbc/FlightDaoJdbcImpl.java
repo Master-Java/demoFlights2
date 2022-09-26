@@ -134,4 +134,10 @@ public class FlightDaoJdbcImpl implements FlightDao {
                 "   AND flight_status = 'inaway'";
         jdbcTemplate.update(sql, new MapSqlParameterSource());
     }
+
+    @Override
+    public void deleteAllFightsLinks() {
+        String sql = "DELETE FROM users_flights;";
+        jdbcTemplate.update(sql, new MapSqlParameterSource());
+    }
 }

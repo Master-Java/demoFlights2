@@ -5,6 +5,7 @@ import com.example.demoflights.sevice.FlightService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ import java.util.List;
 @Api(value = "Flights Controller", description = "Операции с полётами")
 public class FlightsRestController {
 
+    @Value("${rest.api.password.confirm}")
+    private String password;
     private final FlightService flightService;
 
     @GetMapping("/flights")
@@ -68,6 +71,21 @@ public class FlightsRestController {
         try {
             flightService.deleteFlight(idFlight);
             return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/flights/delete/all/{password}")
+    @ApiOperation("Удаление связей полёта и пользователей")
+    public ResponseEntity<?> deleteAllFightsLinks(@PathVariable String password) {
+        try {
+            if (password.equals(this.password)) {
+                flightService.deleteAllFightsLinks();
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

@@ -27,4 +27,6 @@ public interface FlightDao {
     void updateStatusInAWay();
 
     void updateStatusArchive();
+
+    void deleteAllFightsLinks();
 }
