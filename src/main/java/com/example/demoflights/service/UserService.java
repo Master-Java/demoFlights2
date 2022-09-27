@@ -1,4 +1,4 @@
-package com.example.demoflights.sevice;
+package com.example.demoflights.service;
 
 
 import com.example.demoflights.domain.User;

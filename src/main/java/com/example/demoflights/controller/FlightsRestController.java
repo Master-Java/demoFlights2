@@ -1,7 +1,7 @@
 package com.example.demoflights.controller;
 
 import com.example.demoflights.domain.Flight;
-import com.example.demoflights.sevice.FlightService;
+import com.example.demoflights.service.FlightService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @CrossOrigin
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/rest/v1/")
 @Api(value = "Flights Controller", description = "Операции с полётами")
@@ -21,6 +21,7 @@ public class FlightsRestController {
 
     @Value("${rest.api.password.confirm}")
     private String password;
+
     private final FlightService flightService;
 
     @GetMapping("/flights")

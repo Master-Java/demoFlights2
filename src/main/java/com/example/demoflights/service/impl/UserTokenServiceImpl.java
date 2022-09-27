@@ -1,8 +1,8 @@
-package com.example.demoflights.sevice.impl;
+package com.example.demoflights.service.impl;
 
 import com.example.demoflights.dao.UserTokenDao;
 import com.example.demoflights.domain.UserToken;
-import com.example.demoflights.sevice.UserTokenService;
+import com.example.demoflights.service.UserTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

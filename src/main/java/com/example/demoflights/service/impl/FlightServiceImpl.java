@@ -1,10 +1,10 @@
-package com.example.demoflights.sevice.impl;
+package com.example.demoflights.service.impl;
 
 import com.example.demoflights.dao.FlightDao;
 import com.example.demoflights.domain.Flight;
 import com.example.demoflights.domain.User;
-import com.example.demoflights.sevice.FlightService;
-import com.example.demoflights.sevice.UserService;
+import com.example.demoflights.service.FlightService;
+import com.example.demoflights.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;

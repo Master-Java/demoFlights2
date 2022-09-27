@@ -1,7 +1,7 @@
 package com.example.demoflights.controller;
 
 import com.example.demoflights.domain.UserToken;
-import com.example.demoflights.sevice.UserTokenService;
+import com.example.demoflights.service.UserTokenService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

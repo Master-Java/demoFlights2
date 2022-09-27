@@ -1,7 +1,7 @@
 package com.example.demoflights.controller;
 
 import com.example.demoflights.domain.User;
-import com.example.demoflights.sevice.UserService;
+import com.example.demoflights.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
