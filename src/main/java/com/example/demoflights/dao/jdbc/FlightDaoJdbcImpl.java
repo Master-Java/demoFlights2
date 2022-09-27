@@ -140,4 +140,10 @@ public class FlightDaoJdbcImpl implements FlightDao {
         String sql = "DELETE FROM users_flights;";
         jdbcTemplate.update(sql, new MapSqlParameterSource());
     }
+
+    @Override
+    public void deleteAllFights() {
+        String sql = "DELETE FROM flights;";
+        jdbcTemplate.update(sql, new MapSqlParameterSource());
+    }
 }

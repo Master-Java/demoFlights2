@@ -90,5 +90,6 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public void deleteAllFightsLinks() {
         flightDao.deleteAllFightsLinks();
+        flightDao.deleteAllFights();
     }
 }
