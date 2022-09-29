@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequiredArgsConstructor
-@RequestMapping("/api/rest/v1/")
+@RequestMapping("/api/rest/v1/user")
 @Api(value = "User Controller", description = "Операции с пользователями")
 public class UserRestController {
 
     private final UserService userService;
 
-    @PostMapping("/user")
+    @PostMapping()
     @ApiOperation("Создание нового пользователя")
     public ResponseEntity<?> createUser(@RequestBody User user) {
         try {
@@ -29,7 +29,7 @@ public class UserRestController {
         }
     }
 
-    @PutMapping("/user/{phone}")
+    @PutMapping("/{phone}")
     @ApiOperation("Изменение пользователя")
     public ResponseEntity<?> updateUser(@RequestBody User user, String phone) {
         try {
@@ -40,7 +40,7 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/user/by_phone/{phone}")
+    @GetMapping("/by_phone/{phone}")
     @ApiOperation("Получение пользователя по номеру его телефона")
     public ResponseEntity<User> getUserByPhone(@PathVariable String phone) {
         try {

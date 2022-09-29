@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequiredArgsConstructor
-@RequestMapping("/api/rest/v1/")
+@RequestMapping("/api/rest/v1/user_token")
 @Api(value = "UserToken Controller", description = "Операции с токенами пользователей")
 public class UserTokenRestController {
 
     private final UserTokenService userTokenService;
 
-    @PostMapping("/user_token")
+    @PostMapping()
     @ApiOperation("Создание нового токена пользователя")
     public ResponseEntity<?> createUserToken(@RequestBody UserToken userToken) {
         try {
@@ -29,7 +29,7 @@ public class UserTokenRestController {
         }
     }
 
-    @GetMapping("/user_token/{phone}")
+    @GetMapping("/{phone}")
     @ApiOperation("Получение объект - токен пользователя по телефону")
     public ResponseEntity<UserToken> getUserTokenByPhone(@PathVariable String phone) {
         try {
@@ -39,7 +39,7 @@ public class UserTokenRestController {
         }
     }
 
-    @PutMapping("/user_token/{phone}/{token}")
+    @PutMapping("/{phone}/{token}")
     @ApiOperation("Изменение токена пользователя по телефону")
     public ResponseEntity<?> updateUserTokenByPhone(@PathVariable String phone, @PathVariable String token) {
         try {

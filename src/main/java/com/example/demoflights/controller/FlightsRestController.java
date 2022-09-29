@@ -15,7 +15,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/rest/v1/")
+@RequestMapping("/api/rest/v1/flights")
 @Api(value = "Flights Controller", description = "Операции с полётами")
 public class FlightsRestController {
 
@@ -24,7 +24,7 @@ public class FlightsRestController {
 
     private final FlightService flightService;
 
-    @GetMapping("/flights")
+    @GetMapping()
     @ApiOperation("Получение всех полётов")
     public ResponseEntity<List<Flight>> getAllTickets() {
         try {
@@ -34,7 +34,7 @@ public class FlightsRestController {
         }
     }
 
-    @PostMapping("/flight")
+    @PostMapping()
     @ApiOperation("Создание нового полёта")
     public ResponseEntity<?> createFlight(@RequestBody Flight flight) {
         try {
@@ -45,7 +45,7 @@ public class FlightsRestController {
         }
     }
 
-    @PutMapping("/flight/{id}")
+    @PutMapping("/{id}")
     @ApiOperation("Изменение полёта")
     public ResponseEntity<?> updateFlight(@RequestBody Flight flight, @PathVariable int id) {
         try {
@@ -56,7 +56,7 @@ public class FlightsRestController {
         }
     }
 
-    @GetMapping("/flights/{phone}")
+    @GetMapping("/{phone}")
     @ApiOperation("Получение полётов для указанного номера телефона (пользователя)")
     public ResponseEntity<List<Flight>> updateUser(@PathVariable String phone) {
         try {
@@ -66,7 +66,7 @@ public class FlightsRestController {
         }
     }
 
-    @DeleteMapping("/flights/delete/{idFlight}")
+    @DeleteMapping("/delete/{idFlight}")
     @ApiOperation("Удаление полёта по его id")
     public ResponseEntity<?> deleteFlights(@PathVariable int idFlight) {
         try {
@@ -77,7 +77,7 @@ public class FlightsRestController {
         }
     }
 
-    @DeleteMapping("/flights/delete/all/{password}")
+    @DeleteMapping("/delete/all/{password}")
     @ApiOperation("Удаление связей полёта и пользователей")
     public ResponseEntity<?> deleteAllFightsLinks(@PathVariable String password) {
         try {

@@ -1,12 +1,15 @@
 package com.example.demoflights.service;
 
 import com.example.demoflights.domain.service.Mail;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public interface MailService {
-    void sendEmail(String email, String body, String subject) throws MessagingException;
 
-    void sendEmail(Mail mail);
+    void sendEmail(Mail mail) throws MessagingException;
+
+    void sendEmail(Mail mail, MultipartFile[] files) throws MessagingException;
 }
